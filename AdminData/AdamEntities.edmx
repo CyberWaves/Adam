@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectAdamModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ProjectAdamModelStoreContainer">
+          <EntitySet Name="tblAcademicYear" EntityType="ProjectAdamModel.Store.tblAcademicYear" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblBatches" EntityType="ProjectAdamModel.Store.tblBatches" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCourse" EntityType="ProjectAdamModel.Store.tblCourse" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblExams" EntityType="ProjectAdamModel.Store.tblExams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblExamTypes" EntityType="ProjectAdamModel.Store.tblExamTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSections" EntityType="ProjectAdamModel.Store.tblSections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblStudents" EntityType="ProjectAdamModel.Store.tblStudents" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblAcademicYear">
+          <Key>
+            <PropertyRef Name="AcdmcYearId" />
+          </Key>
+          <Property Name="AcdmcYearId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AcdmcYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBatches">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BatchCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BatchName" Type="nvarchar" MaxLength="150" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="DateofCreation" Type="date" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CourseCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateofCreation" Type="date" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblExams">
+          <Key>
+            <PropertyRef Name="ExamID" />
+          </Key>
+          <Property Name="ExamID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ExamCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExamNAme" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExamTypeID" Type="int" />
+          <Property Name="Instructions" Type="nvarchar" MaxLength="500" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="Duration" Type="time" Precision="0" />
+          <Property Name="DateofCreation" Type="date" />
+          <Property Name="Passmark" Type="decimal" Scale="2" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblExamTypes">
+          <Key>
+            <PropertyRef Name="ExamTypeID" />
+          </Key>
+          <Property Name="ExamTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ExamTypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSections">
+          <Key>
+            <PropertyRef Name="SectionId" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStudents">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AdmissionNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuardianName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuardianContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommnAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="PermAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectAdamModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AdamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAcademicYears" EntityType="ProjectAdamModel.tblAcademicYear" />
+          <EntitySet Name="tblBatches" EntityType="ProjectAdamModel.tblBatch" />
+          <EntitySet Name="tblCourses" EntityType="ProjectAdamModel.tblCourse" />
+          <EntitySet Name="tblExams" EntityType="ProjectAdamModel.tblExam" />
+          <EntitySet Name="tblExamTypes" EntityType="ProjectAdamModel.tblExamType" />
+          <EntitySet Name="tblSections" EntityType="ProjectAdamModel.tblSection" />
+          <EntitySet Name="tblStudents" EntityType="ProjectAdamModel.tblStudent" />
+        </EntityContainer>
+        <EntityType Name="tblAcademicYear">
+          <Key>
+            <PropertyRef Name="AcdmcYearId" />
+          </Key>
+          <Property Name="AcdmcYearId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AcdmcYear" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBatch">
+          <Key>
+            <PropertyRef Name="BatchID" />
+          </Key>
+          <Property Name="BatchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatchCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BatchName" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="DateofCreation" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CourseName" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DateofCreation" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblExam">
+          <Key>
+            <PropertyRef Name="ExamID" />
+          </Key>
+          <Property Name="ExamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExamNAme" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExamTypeID" Type="Int32" />
+          <Property Name="Instructions" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="Duration" Type="Time" />
+          <Property Name="DateofCreation" Type="DateTime" />
+          <Property Name="Passmark" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblExamType">
+          <Key>
+            <PropertyRef Name="ExamTypeID" />
+          </Key>
+          <Property Name="ExamTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamTypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSection">
+          <Key>
+            <PropertyRef Name="SectionId" />
+          </Key>
+          <Property Name="SectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdmissionNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Mname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Lname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Dob" Type="DateTime" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GuardianName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GuardianContact" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CommnAddress" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="PermAddress" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectAdamModelStoreContainer" CdmEntityContainer="AdamEntities">
+          <EntitySetMapping Name="tblAcademicYears">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblAcademicYear">
+              <MappingFragment StoreEntitySet="tblAcademicYear">
+                <ScalarProperty Name="AcdmcYearId" ColumnName="AcdmcYearId" />
+                <ScalarProperty Name="AcdmcYear" ColumnName="AcdmcYear" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBatches">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblBatch">
+              <MappingFragment StoreEntitySet="tblBatches">
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
+                <ScalarProperty Name="BatchName" ColumnName="BatchName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DateofCreation" ColumnName="DateofCreation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCourses">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblCourse">
+              <MappingFragment StoreEntitySet="tblCourse">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="DateofCreation" ColumnName="DateofCreation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblExams">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblExam">
+              <MappingFragment StoreEntitySet="tblExams">
+                <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+                <ScalarProperty Name="ExamCode" ColumnName="ExamCode" />
+                <ScalarProperty Name="ExamNAme" ColumnName="ExamNAme" />
+                <ScalarProperty Name="ExamTypeID" ColumnName="ExamTypeID" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="DateofCreation" ColumnName="DateofCreation" />
+                <ScalarProperty Name="Passmark" ColumnName="Passmark" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblExamTypes">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblExamType">
+              <MappingFragment StoreEntitySet="tblExamTypes">
+                <ScalarProperty Name="ExamTypeID" ColumnName="ExamTypeID" />
+                <ScalarProperty Name="ExamTypeName" ColumnName="ExamTypeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSections">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblSection">
+              <MappingFragment StoreEntitySet="tblSections">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="ProjectAdamModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudents">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="AdmissionNo" ColumnName="AdmissionNo" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Mname" ColumnName="Mname" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="GuardianName" ColumnName="GuardianName" />
+                <ScalarProperty Name="GuardianContact" ColumnName="GuardianContact" />
+                <ScalarProperty Name="CommnAddress" ColumnName="CommnAddress" />
+                <ScalarProperty Name="PermAddress" ColumnName="PermAddress" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="AdamEntities">
+        <EntityTypeShape EntityType="ProjectAdamModel.tblAcademicYear" Width="1.5" PointX="0.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblBatch" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblCourse" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblExam" Width="1.5" PointX="0.75" PointY="4.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblExamType" Width="1.5" PointX="2.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblSection" Width="1.5" PointX="4.75" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectAdamModel.tblStudent" Width="1.5" PointX="6.75" PointY="0.75" Height="3.7109993489583317" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
